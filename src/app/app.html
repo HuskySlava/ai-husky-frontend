@@ -1,0 +1,31 @@
+<header>
+  <nav>
+    <app-theme-switch></app-theme-switch>
+  </nav>
+</header>
+
+<div class="main-container">
+  <aside>
+    <nav>
+      [chats]
+    </nav>
+  </aside>
+
+  <main>
+    <section class="chat-area-container" ria-label="Chat conversation">
+      [CHAT Window]
+    </section>
+
+    <form aria-label="Send a message">
+      <label for="chat-message">Message </label>
+      <input id="chat-message" name="message" type="text" placeholder="Type your message..." required />
+      <app-prime-test></app-prime-test>
+    </form>
+  </main>
+</div>
+
+<router-outlet />
+
+<footer>
+  <small>&copy; 2025 Slava Mihaelov</small>
+</footer>

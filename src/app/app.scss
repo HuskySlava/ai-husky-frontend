@@ -1,0 +1,63 @@
+:host {
+  background: var(--husky-bg-primary);
+  color: var(--husky-text);
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-family: Roboto, sans-serif;
+  height: 100%;
+
+  header {
+    background: var(--husky-bg-secondary);
+    color: var(--husky-text);
+
+    display: flex;
+    justify-content: flex-end;
+
+    nav {
+      padding: 8px 16px;
+    }
+
+    button {
+      display: inline-block;
+      background: green;
+    }
+  }
+
+  .main-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+
+    aside {
+      nav {
+        padding: 4px 8px;
+      }
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+
+      .chat-area-container {
+        flex: 1;
+        align-content: center;
+      }
+
+      form {
+        padding: 16px 8px;
+      }
+    }
+  }
+
+  footer {
+    padding: 8px 16px;
+    background: var(--husky-bg-secondary);
+    display: flex;
+    justify-content: center;
+  }
+}

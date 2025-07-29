@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+// FIXME, basic color pallet idea
+:root {
+  --husky-bg-primary: #2c2b3c;
+  --husky-bg-secondary: #1b2432;
+  --husky-bg-tertiary: #1b1e29;
+  --husky-action-primary: #9EE493;
+  --husky-action-secondary: #9EE493;
+  --husky-text: #FFFFFF;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
