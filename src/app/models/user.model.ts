@@ -6,9 +6,9 @@ export class User {
   readonly displayName: string;
   public chatMessages: ChatMessages = [];
 
-  constructor(id: number, displayName: string) {
-    this.id = uuid();
-    this.displayName = "Test User"
+  constructor(id?: string, displayName?: string) {
+    this.id = id ? id : uuid();
+    this.displayName = displayName ? displayName : "Test User";
   }
 
   clearChatMessages(): void {
