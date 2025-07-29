@@ -1,12 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { PrimeTest } from './prime-test/prime-test';
 import { ThemeSwitch } from './components/theme-switch/theme-switch';
+import {ChatArea} from './components/chat-area/chat-area';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PrimeTest, ThemeSwitch],
+  imports: [ThemeSwitch, ChatArea],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -7,10 +7,28 @@
   --husky-action-primary: #9EE493;
   --husky-action-secondary: #9EE493;
   --husky-text: #FFFFFF;
+
+  --chat-bubble-incoming-bg: #404258;
+  --chat-bubble-outgoing-bg: var(--husky-action-primary);
+  --chat-bubble-system-bg: var(--husky-bg-secondary);
+  --chat-bubble-text-incoming: var(--husky-text);
+  --chat-bubble-text-outgoing: #1b1e29;
+  --chat-timestamp-color: #A0A0A0;
+  --chat-border-color: #3a3b4c;
+
+  /* Additional specific vars for input for clarity, derived from your palette */
+  --chat-input-bg: var(--husky-bg-secondary);
+  --chat-input-border: #3a3b4c; /* Slightly lighter than husky-bg-primary */
+  --chat-input-placeholder: #888;
+  --chat-send-button-color: var(--husky-text); /* Button text color */
+  --chat-send-button-bg: var(--husky-action-primary); /* Button background */
+  --chat-send-button-hover-bg: #8AD485; /* Slightly darker green on hover */
+  --chat-send-button-active-bg: #7BC572; /* Even darker green on active */
 }
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }

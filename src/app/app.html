@@ -1,30 +1,18 @@
 <header>
-  <nav>
-    <app-theme-switch></app-theme-switch>
-  </nav>
+  <span class="title">AI&nbsp;&nbsp;🐾&nbsp;&nbsp;Husky </span>
+  <app-theme-switch></app-theme-switch>
 </header>
 
-<div class="main-container">
-  <aside>
-    <nav>
-      [chats]
-    </nav>
-  </aside>
+<main>
+  <app-chat-area></app-chat-area>
+</main>
 
-  <main>
-    <section class="chat-area-container" ria-label="Chat conversation">
-      [CHAT Window]
-    </section>
-
-    <form aria-label="Send a message">
-      <label for="chat-message">Message </label>
-      <input id="chat-message" name="message" type="text" placeholder="Type your message..." required />
-      <app-prime-test></app-prime-test>
-    </form>
-  </main>
+<div class="chat-input-container">
+  <div class="chat-input-wrapper">
+    <input type="text" class="chat-input" placeholder="Type your message here...">
+    <button class="chat-send-button">Send</button>
+  </div>
 </div>
-
-<router-outlet />
 
 <footer>
   <small>&copy; 2025 Slava Mihaelov</small>

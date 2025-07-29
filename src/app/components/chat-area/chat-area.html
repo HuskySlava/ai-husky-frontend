@@ -1,0 +1,8 @@
+<cdk-virtual-scroll-viewport itemSize="100" class="chat-viewport chat-container">
+  <div *cdkVirtualFor="let message of chatMessages; trackBy: trackByMessageId" class="message-item">
+    <div class="message" [ngClass]="message.type">
+      <p>{{ message.text }}</p>
+      <span class="timestamp">{{message.timestamp}}</span>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

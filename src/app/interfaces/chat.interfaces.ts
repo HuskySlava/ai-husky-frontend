@@ -1,8 +1,8 @@
 export interface ChatMessage {
   id: number;
-  type: "question" | "answer";
+  type: "incoming" | "outgoing";
   timestamp: number;
-  message: string;
+  text  : string;
 }
 
 export type ChatMessages = ChatMessage[];

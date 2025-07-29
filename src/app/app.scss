@@ -2,62 +2,117 @@
   background: var(--husky-bg-primary);
   color: var(--husky-text);
 
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   font-family: Roboto, sans-serif;
-  height: 100%;
 
   header {
+    padding: 8px 16px;
     background: var(--husky-bg-secondary);
     color: var(--husky-text);
 
-    display: flex;
-    justify-content: flex-end;
-
-    nav {
-      padding: 8px 16px;
-    }
-
-    button {
-      display: inline-block;
-      background: green;
+    .title {
+      font-weight: bold;
     }
   }
 
-  .main-container {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
+  main {
+    padding: 16px 20%;
 
-    aside {
-      nav {
-        padding: 4px 8px;
-      }
+    .chat-area-container {
+
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-
-      .chat-area-container {
-        flex: 1;
-        align-content: center;
-      }
-
-      form {
-        padding: 16px 8px;
-      }
-    }
   }
 
   footer {
     padding: 8px 16px;
-    background: var(--husky-bg-secondary);
+    background: #131313;
+    text-align: center;
+  }
+
+  .chat-input-container {
+    width: 100%;
     display: flex;
     justify-content: center;
+    .chat-input-wrapper {
+      width: 100%;
+      max-width: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 20px; /* Increased padding */
+      background-color: var(--husky-bg-primary);
+      border-bottom-left-radius: 8px; /* Maintain container bottom radius */
+      border-bottom-right-radius: 8px;
+      gap: 15px; /* Increased space between input and button */
+      font-size: 1.05em; /* Slightly larger base font size for input area */
+
+      .chat-input {
+        flex-grow: 1;
+        padding: 12px 18px; /* Slightly more padding for a bulkier feel */
+        border: 1px solid var(--chat-input-border);
+        border-radius: 6px; /* Less rounded, more rectangular */
+        background-color: var(--chat-input-bg);
+        color: var(--husky-text);
+        font-size: 1em; /* Relative to parent .chat-input-container */
+        line-height: 1.4; /* Better line spacing for desktop */
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Add box-shadow transition */
+      }
+
+      .chat-input::placeholder {
+        color: var(--chat-input-placeholder);
+      }
+
+      .chat-input:focus {
+        border-color: var(--husky-action-primary);
+        box-shadow: 0 0 0 2px rgba(158, 228, 147, 0.2); /* Green glow on focus */
+      }
+    }
+
+    .chat-send-button {
+      flex-shrink: 0;
+      padding: 12px 25px; /* More padding for a substantial button */
+      background-color: var(--chat-send-button-bg); /* Solid green background */
+      color: var(--chat-send-button-color); /* White text */
+      border: none;
+      border-radius: 6px; /* Less rounded, matches input */
+      cursor: pointer;
+      font-size: 1em; /* Relative to parent .chat-input-container */
+      font-weight: bold; /* Make text bolder */
+      transition: background-color 0.2s ease, transform 0.1s ease; /* Add transform for click effect */
+
+      &:hover {
+        background-color: var(--chat-send-button-hover-bg);
+      }
+
+      &:active {
+        background-color: var(--chat-send-button-active-bg);
+        transform: translateY(1px); /* Slight downward push on click */
+      }
+    }
+
+  }
+}
+
+// Layout
+:host {
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  header {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  main {
+    flex: 1 1 auto;  /* Take remaining space */
+    overflow: auto;  /* Scroll if content overflows */
+  }
+
+  footer {
+    flex: 0 0 auto;
   }
 }

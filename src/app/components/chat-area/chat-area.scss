@@ -1,0 +1,83 @@
+:host {
+  //flex-direction: column;
+  //justify-content: flex-end;
+  .chat-viewport {
+    height: 100%;
+  }
+
+  /* Basic Chat Container Styles */
+  .chat-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    color: var(--husky-text);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  /* Base Message Bubble Styles */
+  .message {
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+  }
+
+  .message p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .message .timestamp {
+    font-size: 0.75em;
+    color: var(--chat-timestamp-color);
+    align-self: flex-end;
+    margin-top: 5px;
+  }
+
+  .message.incoming {
+    background-color: var(--chat-bubble-incoming-bg); /* Darker, distinct background for incoming */
+    color: var(--chat-bubble-text-incoming); /* White text for incoming */
+    align-self: flex-start;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+  }
+
+  .message.outgoing {
+    background-color: var(--chat-bubble-outgoing-bg); /* Your primary action color */
+    color: var(--chat-bubble-text-outgoing); /* Dark text for the light green bubble */
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+  }
+
+  /* --- System Message Styles (for notifications) --- */
+  .message.system {
+    background-color: var(--chat-bubble-system-bg); /* A neutral dark background */
+    color: var(--chat-timestamp-color); /* Soft gray for system text */
+    font-style: italic;
+    text-align: center;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    border: 1px solid var(--husky-bg-primary); /* Border slightly darker than chat container */
+  }
+
+  .message.system .timestamp {
+    align-self: center;
+    margin-top: 3px;
+    color: var(--chat-timestamp-color); /* Ensure consistent timestamp color */
+  }
+}
