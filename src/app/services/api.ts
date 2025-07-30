@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment'; // adjust path if needed
+import { environment } from '../../environments/environment';
+import {Subject} from 'rxjs';
+import {User} from '../models/user.model'; // adjust path if needed
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class Api {
   private ws!: WebSocket;
   private wsUrl = environment.wsUrl;
   private httpUrl = environment.httpUrl;
 
+  private messageSubject = new Subject<any>();
+  public wsMessages$ = this.messageSubject.asObservable();
+
   constructor(private http: HttpClient) {
-    this.initWebSocket();
+
   }
 
-  public async init(){
+  public async init(user: User){
     if(!this.ws){
-      this.initWebSocket()
+      await this.initWebSocket(user)
     } else {
       console.warn("WS already in use");
     }
   }
 
-  private initWebSocket(): Promise<void> {
+  private initWebSocket(user: User): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.ws = new WebSocket(this.wsUrl);
+
+      const userParam = user.id ? `?uuid=${user.id}` : '';
+      this.ws = new WebSocket(`${this.wsUrl}${userParam}`);
 
       this.ws.onopen = () => {
         console.log('WebSocket connection opened');
@@ -37,7 +45,12 @@ export class Api {
       };
 
       this.ws.onmessage = (event) => {
-        console.log('Received from WS:', event.data);
+        try {
+          const message = JSON.parse(event.data);
+          this.messageSubject.next(message); // Fire the event
+        } catch (err) {
+          console.error('Failed to parse WebSocket message:', err);
+        }
       };
 
       this.ws.onclose = () => {

@@ -7,7 +7,7 @@ export class User {
   public chatMessages: ChatMessages = [];
 
   constructor(id?: string, displayName?: string) {
-    this.id = id ? id : uuid();
+    this.id = id ? id : '';
     this.displayName = displayName ? displayName : "Test User";
   }
 
