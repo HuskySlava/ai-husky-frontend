@@ -6,6 +6,7 @@ const LS_PREFIX = 'ai-husky__';
   providedIn: 'root'
 })
 
+// TODO: Handle unsupported local storage
 export class LocalStorageService {
   private localeStorage: Storage;
 
@@ -23,6 +24,12 @@ export class LocalStorageService {
 
   public removeKey(key: string): void {
     this.localeStorage.removeItem(LS_PREFIX + key);
+  }
+
+  public clearAll(): void {
+    Object.keys(this.localeStorage)
+      .filter(key => key.startsWith(LS_PREFIX))
+      .forEach(key => this.localeStorage.removeItem(key));
   }
 
 }
