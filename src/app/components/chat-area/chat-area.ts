@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import {ChatMessage, ChatMessages} from '../../interfaces/chat.interfaces';
+import {ChatMessage} from '../../interfaces/chat.interfaces';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {NgClass} from '@angular/common';
-import {Api} from '../../services/api';
 import {Subscription} from 'rxjs';
+import {ChatMessagesService} from '../../services/chat-messages.service';
 
 @Component({
   standalone: true,
@@ -15,22 +15,31 @@ import {Subscription} from 'rxjs';
 })
 
 export class ChatArea implements OnInit {
-  chatMessages: ChatMessages = [];
-  chatMessagesSubscription: Subscription;
-  constructor(private api: Api) {
-    // TODO Generics
-    this.chatMessagesSubscription = this.api.wsMessages$.subscribe((message) => {
-      if(message.type === 'chatMessage') {
-        this.chatMessages = [...this.chatMessages, message.chatMessage]
-      }
-    })
+  chatMessages: ChatMessage[] = [];
+  chatMessagesSubscription: Subscription = new Subscription();
+
+  constructor(private chatMessagesService: ChatMessagesService, private zone: NgZone) {
+
   }
 
   ngOnInit(): void {
-
+    this.chatMessagesSubscription = this.chatMessagesService.messages$.subscribe(messages => {
+      this.chatMessages = messages;
+    })
+    // this.zone.run(() => {
+    //
+    // });
   }
 
-  trackByMessageId(index: number, message: ChatMessage): number {
-    return message.id; // Returns the unique 'id' from your ChatMessage object
+  ngOnDestroy(): void {
+    this.chatMessagesSubscription && this.chatMessagesSubscription.unsubscribe();
+  }
+
+  pushMessage(message: ChatMessage) {
+    this.chatMessages = [...this.chatMessages, message];
+  }
+
+  trackByMessageDate(index: number, message: ChatMessage): number {
+    return message.timestamp; // Returns the unique 'id' from your ChatMessage object
   }
 }

@@ -1,8 +1,6 @@
 export interface ChatMessage {
-  id: number;
+  id: string;
   type: "incoming" | "outgoing";
   timestamp: number;
-  text  : string;
+  text: string;
 }
-
-export type ChatMessages = ChatMessage[];

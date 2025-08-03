@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {Subject} from 'rxjs';
-import {User} from '../models/user.model'; // adjust path if needed
+import {User} from '../models/user.model';
+import {ChatMessage} from '../interfaces/chat.interfaces'; // adjust path if needed
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class Api {
       this.ws.onmessage = (event) => {
         try {
           const message = JSON.parse(event.data);
-          this.messageSubject.next(message); // Fire the event
+          this.messageSubject.next(message);
         } catch (err) {
           console.error('Failed to parse WebSocket message:', err);
         }
@@ -60,7 +61,7 @@ export class Api {
   }
 
 
-  sendMessage(data: any) {
+  sendMessage(data: ChatMessage) {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(JSON.stringify(data));
     } else {
