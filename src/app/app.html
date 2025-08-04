@@ -1,18 +1,13 @@
 <header>
   <span class="title">AI&nbsp;&nbsp;🐾&nbsp;&nbsp;Husky </span>
-  <app-theme-switch></app-theme-switch>
+<!--  <app-theme-switch></app-theme-switch>-->
 </header>
 
 <main>
   <app-chat-area></app-chat-area>
 </main>
 
-<div class="chat-input-container">
-  <div class="chat-input-wrapper">
-    <input #lolstuff type="text" class="chat-input" placeholder="Type your message here...">
-    <button (click)="sendChatMessage(lolstuff)" class="chat-send-button">Send</button>
-  </div>
-</div>
+<app-prompt-input></app-prompt-input>
 
 <footer>
   <small>&copy; 2025 Slava Mihaelov</small>

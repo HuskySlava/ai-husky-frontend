@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  justify-content: center;
+  //background: red;
+  margin: 0 auto;
+  width: 100%;
+
+  .prompt-input-container {
+    padding: 16px 8px;
+
+    @media screen and (min-width: 601px) {
+      width: 600px;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+}
+
+

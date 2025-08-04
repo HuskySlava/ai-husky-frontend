@@ -1,0 +1,10 @@
+<form class="prompt-input-container" [formGroup]="promptForm" (ngSubmit)="ask()">
+  <p-inputgroup>
+    <input
+      pInputText
+      formControlName="inputPrompt"
+      placeholder="Ask Husky AI"
+    />
+    <p-button type="submit" label="Ask" [disabled]="promptForm.invalid || isMessageServiceBusy"></p-button>
+  </p-inputgroup>
+</form>

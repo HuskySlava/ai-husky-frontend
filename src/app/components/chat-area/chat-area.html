@@ -2,7 +2,16 @@
   <div *cdkVirtualFor="let message of chatMessages; trackBy: trackByMessageDate" class="message-item">
     <div class="message" [ngClass]="message.type">
       <p>{{ message.text }}</p>
-      <span class="timestamp">{{message.timestamp}}</span>
+      <span class="timestamp">{{moment(message.timestamp).format("DD/MM/YYYY - HH:mm:ss")}}</span>
     </div>
   </div>
+
+  @if(isMessageServiceBusy){
+    <div class="typing-indicator">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  }
+
 </cdk-virtual-scroll-viewport>

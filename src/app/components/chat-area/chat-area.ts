@@ -5,6 +5,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import {NgClass} from '@angular/common';
 import {Subscription} from 'rxjs';
 import {ChatMessagesService} from '../../services/chat-messages.service';
+import moment from 'moment';
 
 @Component({
   standalone: true,
@@ -18,14 +19,21 @@ export class ChatArea implements OnInit {
   chatMessages: ChatMessage[] = [];
   chatMessagesSubscription: Subscription = new Subscription();
 
-  constructor(private chatMessagesService: ChatMessagesService, private zone: NgZone) {
+  private isMessageServiceBusySubscription: Subscription;
+  public isMessageServiceBusy: boolean = false;
 
+  constructor(private chatMessagesService: ChatMessagesService, private zone: NgZone) {
+    this.isMessageServiceBusySubscription = this.chatMessagesService.isBusy$.subscribe((isBusy: boolean) => {
+      this.isMessageServiceBusy = isBusy;
+    })
   }
 
   ngOnInit(): void {
     this.chatMessagesSubscription = this.chatMessagesService.messages$.subscribe(messages => {
       this.chatMessages = messages;
     })
+
+
     // this.zone.run(() => {
     //
     // });
@@ -33,13 +41,12 @@ export class ChatArea implements OnInit {
 
   ngOnDestroy(): void {
     this.chatMessagesSubscription && this.chatMessagesSubscription.unsubscribe();
-  }
-
-  pushMessage(message: ChatMessage) {
-    this.chatMessages = [...this.chatMessages, message];
+    this.isMessageServiceBusySubscription && this.isMessageServiceBusySubscription.unsubscribe();
   }
 
   trackByMessageDate(index: number, message: ChatMessage): number {
     return message.timestamp; // Returns the unique 'id' from your ChatMessage object
   }
+
+  protected readonly moment = moment;
 }
